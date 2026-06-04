@@ -14,7 +14,7 @@ public partial class User
 
     public string Login { get; set; } = null!;
 
-    public string Pass { get; set; } = null!;
+    public string Pass { get; set; } = null!; 
 
     public virtual Role Role { get; set; } = null!;
 

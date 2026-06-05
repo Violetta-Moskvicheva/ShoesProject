@@ -10,6 +10,7 @@ namespace ShoesProject
         public User CurrentUser { get; private set; }
         public bool isGuest { get; private set; }
 
+        // Конструктор формы: настройка колонок таблицы, авторизация пользователя и загрузка товаров
         public FormProducts(User user, bool guest)
         {
             InitializeComponent();
@@ -40,6 +41,7 @@ namespace ShoesProject
             LoadProducts(); //метод подгрузки информации товаров
         }
 
+        // Загрузка списка товаров из базы данных и заполнение таблицы с применением стилей
         private void LoadProducts()
         {
             try
@@ -67,7 +69,7 @@ namespace ShoesProject
                         row.Cells["colDiscount"].Value = $"{product.Discount}%";
                         row.Cells["colDiscount"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                        ApplyRowStules(row, product);
+                        ApplyRowStyles(row, product);
                     }
 
                     dgvProducts.ResumeLayout();
@@ -76,12 +78,13 @@ namespace ShoesProject
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"{ex.Message}", "",
+                MessageBox.Show($"{ex.Message}", "Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void ApplyRowStules(DataGridViewRow row, Product products)
+        // Стилизация строк таблицы в зависимости от скидки и остатка товара
+        private void ApplyRowStyles(DataGridViewRow row, Product products)
         {
             if (products.Discount > 15)
             {
@@ -101,13 +104,11 @@ namespace ShoesProject
             if (products.Discount > 0)
             {
                 row.Cells["colDiscount"].Style.ForeColor = Color.Red;
-                row.Cells["colDiscount"].Style.Font = new Font(
-                    "Times New Roman",
-                    12,
-                    FontStyle.Bold);
-            }
+                row.Cells["colDiscount"].Style.Font = new Font( "Times New Roman",  12, FontStyle.Bold);
+            } 
         }
 
+        // Форматирование информации о товаре для отображения (с расчетом скидки)
         private string FormatProductInfo(Product product)
         {
             string priceText;
@@ -130,6 +131,7 @@ namespace ShoesProject
                 $"Количество на складе: {product.CointInStock}";
         }
 
+        // Загрузка изображения товара по пути (или заглушки, если файл не найден)
         private Image LoadProductImage(string photoUrl)
         {
             if (!String.IsNullOrEmpty(photoUrl) && System.IO.File.Exists(photoUrl))
@@ -140,12 +142,14 @@ namespace ShoesProject
             return Resources.picture;
         }
 
+        // Кнопка выхода
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
+        // Обработка закрытия формы
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);

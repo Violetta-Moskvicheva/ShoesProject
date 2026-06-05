@@ -30,10 +30,10 @@
         {
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             pnTop = new Panel();
+            lbUserName = new Label();
+            btnViewOrders = new Button();
             btnLogout = new Button();
             dgvProducts = new DataGridView();
-            btnViewOrders = new Button();
-            lbUserName = new Label();
             pnTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
             SuspendLayout();
@@ -49,6 +49,30 @@
             pnTop.Padding = new Padding(0, 0, 0, 10);
             pnTop.Size = new Size(962, 40);
             pnTop.TabIndex = 0;
+            // 
+            // lbUserName
+            // 
+            lbUserName.AutoSize = true;
+            lbUserName.Dock = DockStyle.Right;
+            lbUserName.Location = new Point(547, 0);
+            lbUserName.Name = "lbUserName";
+            lbUserName.Size = new Size(45, 19);
+            lbUserName.TabIndex = 8;
+            lbUserName.Text = "label1";
+            lbUserName.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // btnViewOrders
+            // 
+            btnViewOrders.BackColor = Color.Chartreuse;
+            btnViewOrders.Dock = DockStyle.Right;
+            btnViewOrders.FlatAppearance.BorderSize = 0;
+            btnViewOrders.FlatStyle = FlatStyle.Flat;
+            btnViewOrders.Location = new Point(592, 0);
+            btnViewOrders.Name = "btnViewOrders";
+            btnViewOrders.Size = new Size(185, 30);
+            btnViewOrders.TabIndex = 7;
+            btnViewOrders.Text = "Мои заказы";
+            btnViewOrders.UseVisualStyleBackColor = false;
             // 
             // btnLogout
             // 
@@ -93,33 +117,9 @@
             dgvProducts.Size = new Size(962, 593);
             dgvProducts.TabIndex = 1;
             // 
-            // btnViewOrders
-            // 
-            btnViewOrders.BackColor = Color.SkyBlue;
-            btnViewOrders.Dock = DockStyle.Right;
-            btnViewOrders.FlatAppearance.BorderSize = 0;
-            btnViewOrders.FlatStyle = FlatStyle.Flat;
-            btnViewOrders.Location = new Point(592, 0);
-            btnViewOrders.Name = "btnViewOrders";
-            btnViewOrders.Size = new Size(185, 30);
-            btnViewOrders.TabIndex = 7;
-            btnViewOrders.Text = "Мои заказы";
-            btnViewOrders.UseVisualStyleBackColor = false;
-            // 
-            // lbUserName
-            // 
-            lbUserName.AutoSize = true;
-            lbUserName.Dock = DockStyle.Right;
-            lbUserName.Location = new Point(532, 0);
-            lbUserName.Name = "lbUserName";
-            lbUserName.Size = new Size(60, 22);
-            lbUserName.TabIndex = 8;
-            lbUserName.Text = "label1";
-            lbUserName.TextAlign = ContentAlignment.MiddleRight;
-            // 
             // FormProducts
             // 
-            AutoScaleDimensions = new SizeF(11F, 22F);
+            AutoScaleDimensions = new SizeF(9F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(982, 653);

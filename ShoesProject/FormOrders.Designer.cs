@@ -39,16 +39,16 @@
             // 
             lbUserName.AutoSize = true;
             lbUserName.Dock = DockStyle.Right;
-            lbUserName.Location = new Point(902, 0);
+            lbUserName.Location = new Point(917, 0);
             lbUserName.Name = "lbUserName";
-            lbUserName.Size = new Size(60, 22);
+            lbUserName.Size = new Size(45, 19);
             lbUserName.TabIndex = 6;
             lbUserName.Text = "label1";
             lbUserName.TextAlign = ContentAlignment.MiddleRight;
             // 
             // btnBack
             // 
-            btnBack.BackColor = Color.LightGray;
+            btnBack.BackColor = Color.MediumSpringGreen;
             btnBack.Dock = DockStyle.Left;
             btnBack.FlatAppearance.BorderSize = 0;
             btnBack.FlatStyle = FlatStyle.Flat;
@@ -91,7 +91,7 @@
             // 
             // FormOrders
             // 
-            AutoScaleDimensions = new SizeF(11F, 22F);
+            AutoScaleDimensions = new SizeF(9F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(982, 653);

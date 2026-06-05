@@ -15,13 +15,15 @@ namespace ShoesProject
         public User CurrentUser { get; private set; }
         public bool IsGuest { get; private set; }
 
+        // Конструктор формы: настройка колонок таблицы заказов,
+        // отображение имени пользователя и загрузка данных (только для авторизованных)
         public FormOrders(User user, bool guest)
         {
             InitializeComponent();
             CurrentUser = user;
             IsGuest = guest;
 
-            // Настройка колонок DataGridView (используем одну большую текстовую колонку)
+            
             var colOrderInfo = new DataGridViewTextBoxColumn
             {
                 Name = "colOrderInfo",
@@ -48,22 +50,24 @@ namespace ShoesProject
             }
             else
             {
-                MessageBox.Show("Гости не могут просматривать заказы.", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Гости не могут просматривать заказы.", "Информация", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
+        // Загрузка истории заказов текущего пользователя из базы данных
+        // заполнение таблицы с применением стилей
         private void LoadOrders()
         {
             try
             {
                 using (var db = new ShopDbContext())
                 {
-                    // Загружаем заказы текущего пользователя со всеми связями
                     var orders = db.Orders
                         .Include(o => o.DeliveryPoint)
                         .Include(o => o.Status)
                         .Include(o => o.ProductsOrders)
-                            .ThenInclude(po => po.Product)
+                        .ThenInclude(po => po.Product)
                         .Where(o => o.IdUser == CurrentUser.Id) // Фильтр по текущему юзеру
                         .OrderByDescending(o => o.OrderDate)
                         .ToList();
@@ -88,11 +92,12 @@ namespace ShoesProject
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при загрузке заказов: {ex.Message}", "Ошибка",
+                MessageBox.Show($"{ex.Message}", "Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        // Форматирование информации о заказе
         private string FormatOrderInfo(Order order)
         {
             var productsSummary = string.Join(Environment.NewLine, order.ProductsOrders.Select(po =>
@@ -110,10 +115,10 @@ namespace ShoesProject
                    $"Итого к оплате: {totalOrderPrice:C}";
         }
 
+        //Стилизация ячейки статуса заказа в таблице
         private void ApplyRowStyles(DataGridViewRow row, Order order)
         {
-            // Стилизация статуса (например, если статус "Завершен" или "Новый")
-            if (order.IdStatuses == 2) // Предположим, id 2 - это завершен/готов
+            if (order.IdStatuses == 1) // id 1 - "Завершен"
             {
                 row.Cells["colStatus"].Style.ForeColor = Color.Green;
                 row.Cells["colStatus"].Style.Font = new Font("Times New Roman", 12, FontStyle.Bold);

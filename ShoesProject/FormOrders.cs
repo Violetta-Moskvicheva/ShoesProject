@@ -12,12 +12,12 @@ namespace ShoesProject
 {
     public partial class FormOrders : Form
     {
-        public User CurrentUser { get; private set; }
+        public User? CurrentUser { get; private set; }
         public bool IsGuest { get; private set; }
 
         // Конструктор формы: настройка колонок таблицы заказов,
         // отображение имени пользователя и загрузка данных (только для авторизованных)
-        public FormOrders(User user, bool guest)
+        public FormOrders(User? user, bool guest)
         {
             InitializeComponent();
             CurrentUser = user;
@@ -44,7 +44,7 @@ namespace ShoesProject
 
             lbUserName.Text = IsGuest ? "Гость" : CurrentUser.FullName;
 
-            if (!IsGuest)
+            if (!IsGuest && CurrentUser != null)
             {
                 LoadOrders();
             }

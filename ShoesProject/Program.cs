@@ -5,6 +5,9 @@ namespace ShoesProject
         [STAThread]
         static void Main()
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
             bool exitProgram = false;
 
             while (!exitProgram)
@@ -17,19 +20,21 @@ namespace ShoesProject
                             formLogin.CurrentUser,
                             formLogin.isGuest))
                         {
-                            if (formLogin.ShowDialog() == DialogResult.OK)
+                            if (formProducts.ShowDialog() == DialogResult.OK)
                             {
-                                continue;
-                            } else {
+                            }
+                            else
+                            {
                                 exitProgram = true;
                             }
                         }
-                    } else {
+                    }
+                    else
+                    {
                         exitProgram = true;
                     }
                 }
-            }   //ApplicationConfiguration.Initialize();
-                //Application.Run(new FormLogin());
+            }
         }
     }
 }

@@ -39,7 +39,7 @@
             // 
             lbUserName.AutoSize = true;
             lbUserName.Dock = DockStyle.Right;
-            lbUserName.Location = new Point(917, 0);
+            lbUserName.Location = new Point(767, 0);
             lbUserName.Name = "lbUserName";
             lbUserName.Size = new Size(45, 19);
             lbUserName.TabIndex = 6;
@@ -49,10 +49,10 @@
             // btnBack
             // 
             btnBack.BackColor = Color.MediumSpringGreen;
-            btnBack.Dock = DockStyle.Left;
+            btnBack.Dock = DockStyle.Right;
             btnBack.FlatAppearance.BorderSize = 0;
             btnBack.FlatStyle = FlatStyle.Flat;
-            btnBack.Location = new Point(0, 0);
+            btnBack.Location = new Point(812, 0);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(150, 30);
             btnBack.TabIndex = 5;

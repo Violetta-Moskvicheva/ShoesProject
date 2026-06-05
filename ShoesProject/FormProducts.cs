@@ -104,8 +104,8 @@ namespace ShoesProject
             if (products.Discount > 0)
             {
                 row.Cells["colDiscount"].Style.ForeColor = Color.Red;
-                row.Cells["colDiscount"].Style.Font = new Font( "Times New Roman",  12, FontStyle.Bold);
-            } 
+                row.Cells["colDiscount"].Style.Font = new Font("Times New Roman", 12, FontStyle.Bold);
+            }
         }
 
         // Форматирование информации о товаре для отображения (с расчетом скидки)
@@ -153,6 +153,22 @@ namespace ShoesProject
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
+        }
+
+        // Кнопка просмотра моих заказов
+        private void btnViewOrders_Click(object sender, EventArgs e)
+        {
+            if (isGuest || CurrentUser == null)
+            {
+                MessageBox.Show("Просмотр заказов недоступен для гостей. Пожалуйста, авторизуйтесь.",
+                    "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            using (FormOrders formOrders = new FormOrders(CurrentUser, isGuest))
+            {
+                formOrders.ShowDialog();
+            }
         }
     }
 }

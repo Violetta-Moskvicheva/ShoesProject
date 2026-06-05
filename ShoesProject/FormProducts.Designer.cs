@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             pnTop = new Panel();
-            lbUserName = new Label();
             btnLogout = new Button();
             dgvProducts = new DataGridView();
+            btnViewOrders = new Button();
+            lbUserName = new Label();
             pnTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
             SuspendLayout();
@@ -40,6 +41,7 @@
             // pnTop
             // 
             pnTop.Controls.Add(lbUserName);
+            pnTop.Controls.Add(btnViewOrders);
             pnTop.Controls.Add(btnLogout);
             pnTop.Dock = DockStyle.Top;
             pnTop.Location = new Point(10, 10);
@@ -47,17 +49,6 @@
             pnTop.Padding = new Padding(0, 0, 0, 10);
             pnTop.Size = new Size(962, 40);
             pnTop.TabIndex = 0;
-            // 
-            // lbUserName
-            // 
-            lbUserName.AutoSize = true;
-            lbUserName.Dock = DockStyle.Right;
-            lbUserName.Location = new Point(717, 0);
-            lbUserName.Name = "lbUserName";
-            lbUserName.Size = new Size(60, 22);
-            lbUserName.TabIndex = 6;
-            lbUserName.Text = "label1";
-            lbUserName.TextAlign = ContentAlignment.MiddleRight;
             // 
             // btnLogout
             // 
@@ -83,14 +74,14 @@
             dgvProducts.BorderStyle = BorderStyle.None;
             dgvProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvProducts.ColumnHeadersVisible = false;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Window;
-            dataGridViewCellStyle1.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvProducts.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvProducts.DefaultCellStyle = dataGridViewCellStyle2;
             dgvProducts.Dock = DockStyle.Fill;
             dgvProducts.Location = new Point(10, 50);
             dgvProducts.MultiSelect = false;
@@ -101,6 +92,30 @@
             dgvProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProducts.Size = new Size(962, 593);
             dgvProducts.TabIndex = 1;
+            // 
+            // btnViewOrders
+            // 
+            btnViewOrders.BackColor = Color.SkyBlue;
+            btnViewOrders.Dock = DockStyle.Right;
+            btnViewOrders.FlatAppearance.BorderSize = 0;
+            btnViewOrders.FlatStyle = FlatStyle.Flat;
+            btnViewOrders.Location = new Point(592, 0);
+            btnViewOrders.Name = "btnViewOrders";
+            btnViewOrders.Size = new Size(185, 30);
+            btnViewOrders.TabIndex = 7;
+            btnViewOrders.Text = "Мои заказы";
+            btnViewOrders.UseVisualStyleBackColor = false;
+            // 
+            // lbUserName
+            // 
+            lbUserName.AutoSize = true;
+            lbUserName.Dock = DockStyle.Right;
+            lbUserName.Location = new Point(532, 0);
+            lbUserName.Name = "lbUserName";
+            lbUserName.Size = new Size(60, 22);
+            lbUserName.TabIndex = 8;
+            lbUserName.Text = "label1";
+            lbUserName.TextAlign = ContentAlignment.MiddleRight;
             // 
             // FormProducts
             // 
@@ -127,7 +142,8 @@
 
         private Panel pnTop;
         private Button btnLogout;
-        private Label lbUserName;
         private DataGridView dgvProducts;
+        private Label lbUserName;
+        private Button btnViewOrders;
     }
 }

@@ -145,7 +145,7 @@ namespace ShoesProject
         // Кнопка выхода
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
 

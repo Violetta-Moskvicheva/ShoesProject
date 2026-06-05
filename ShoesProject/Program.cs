@@ -22,6 +22,7 @@ namespace ShoesProject
                         {
                             if (formProducts.ShowDialog() == DialogResult.OK)
                             {
+                                continue;
                             }
                             else
                             {

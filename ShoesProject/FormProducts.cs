@@ -35,8 +35,8 @@ namespace ShoesProject
 
             CurrentUser = user;
             isGuest = guest;
-
             lbUserName.Text = isGuest ? "Гость" : CurrentUser.FullName;
+
 
             LoadProducts(); //метод подгрузки информации товаров
         }
@@ -117,6 +117,7 @@ namespace ShoesProject
             {
                 decimal finalPrice = product.Price * (100 - product.Discount) / 100;
                 priceText = $"Цена: {product.Price:C} -> {finalPrice:C}";
+
             }
             else
             {
@@ -126,7 +127,7 @@ namespace ShoesProject
                 $"Описание товара: {product.Description}" + Environment.NewLine +
                 $"Производитель: {product.Manufacturer.ManufacturerName}" + Environment.NewLine +
                 $"Поставщик: {product.Supplier.SupplierName}" + Environment.NewLine +
-                $"Цена {priceText}" + Environment.NewLine +
+                $"{priceText}" + Environment.NewLine +
                 $"Единица измерения: {product.Measure.MeasureName}" + Environment.NewLine +
                 $"Количество на складе: {product.CointInStock}";
         }

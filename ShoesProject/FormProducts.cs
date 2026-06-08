@@ -116,18 +116,18 @@ namespace ShoesProject
             if (product.Discount > 0)
             {
                 decimal finalPrice = product.Price * (100 - product.Discount) / 100;
-                priceText = $"Цена: {product.Price:C} -> {finalPrice:C}";
+                priceText = $"{product.Price:C} -> {finalPrice:C}";
 
             }
             else
             {
-                priceText = $"Цена: {product.Price:C}";
+                priceText = $"{product.Price:C}";
             }
             return $"{product.Category.CategoryName} | {product.ProductType.ProdType} " + Environment.NewLine +
                 $"Описание товара: {product.Description}" + Environment.NewLine +
                 $"Производитель: {product.Manufacturer.ManufacturerName}" + Environment.NewLine +
                 $"Поставщик: {product.Supplier.SupplierName}" + Environment.NewLine +
-                $"{priceText}" + Environment.NewLine +
+                $"Цена: {priceText}" + Environment.NewLine +
                 $"Единица измерения: {product.Measure.MeasureName}" + Environment.NewLine +
                 $"Количество на складе: {product.CointInStock}";
         }
@@ -135,9 +135,14 @@ namespace ShoesProject
         // Загрузка изображения товара по пути (или заглушки, если файл не найден)
         private Image LoadProductImage(string photoUrl)
         {
-            if (!String.IsNullOrEmpty(photoUrl) && System.IO.File.Exists(photoUrl))
+            if (!String.IsNullOrEmpty(photoUrl))//&& System.IO.File.Exists(photoUrl)
             {
-                return Image.FromFile(photoUrl);
+                string resourceName = Path.GetFileNameWithoutExtension(photoUrl).Trim();
+
+                var rm = Properties.Resources.ResourceManager;
+                var img = rm.GetObject(resourceName) as Image;
+
+                return img;
             }
 
             return Resources.picture;
@@ -153,12 +158,13 @@ namespace ShoesProject
         // Обработка закрытия формы
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
+            //завершает работу формы и освобождает ресурсы
             base.OnFormClosing(e);
         }
 
         // Кнопка просмотра моих заказов
         private void btnViewOrders_Click(object sender, EventArgs e)
-        {
+        { 
             if (isGuest || CurrentUser == null)
             {
                 MessageBox.Show("Просмотр заказов недоступен для гостей. Пожалуйста, авторизуйтесь.",

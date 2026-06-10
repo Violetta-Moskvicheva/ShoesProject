@@ -8,6 +8,7 @@ namespace ShoesProject
     {
         public User CurrentUser { get; private set; }
         public bool isGuest {  get; private set; }
+
         public FormLogin()
         {
             InitializeComponent();

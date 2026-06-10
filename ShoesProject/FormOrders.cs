@@ -34,7 +34,7 @@ namespace ShoesProject
             };
             colStatus.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            dgvOrders.Columns.AddRange(new DataGridViewColumn[] { colOrderInfo, colStatus });
+            dgvOrders.Columns.AddRange([colOrderInfo, colStatus]);
 
             lbUserName.Text = IsGuest ? "Гость" : CurrentUser.FullName;
 
@@ -62,7 +62,7 @@ namespace ShoesProject
                         .Include(o => o.Status)
                         .Include(o => o.ProductsOrders)
                         .ThenInclude(po => po.Product)
-                        .Where(o => o.IdUser == CurrentUser.Id) // Фильтр по текущему юзеру
+                        .Where(o => o.IdUser == CurrentUser.Id)
                         .OrderByDescending(o => o.OrderDate)
                         .ToList();
 
@@ -94,19 +94,20 @@ namespace ShoesProject
         // Форматирование информации о заказе
         private string FormatOrderInfo(Order order)
         {
-            var productsSummary = string.Join(Environment.NewLine, order.ProductsOrders.Select(po =>
-                $"  - {po.Product.Art} (Кол-во: {po.Quantity} шт.)"));
+            var productsDesc = string.Join(Environment.NewLine, order.ProductsOrders.Select(po =>
+                $" - {po.Product.Art} (Кол-во: {po.Quantity} шт.)"));
 
             // Расчет общей стоимости заказа с учетом скидок
             decimal totalOrderPrice = order.ProductsOrders.Sum(po =>
                 (po.Product.Price * (100 - po.Product.Discount) / 100) * po.Quantity);
 
-            return $"Заказ № {order.Id} от {order.OrderDate:dd.MM.yyyy}" + Environment.NewLine +
+            return $"Заказ № {order.Id}" + Environment.NewLine +
                    $"Дата доставки: {order.DeliveryDate:dd.MM.yyyy}" + Environment.NewLine +
                    $"Пункт выдачи: {order.DeliveryPoint.DeliveryAddress}" + Environment.NewLine +
                    $"Код получения: {order.Code}" + Environment.NewLine +
-                   $"Состав заказа:" + Environment.NewLine + productsSummary + Environment.NewLine +
-                   $"Итого к оплате: {totalOrderPrice:C}";
+                   $"Состав заказа:" + Environment.NewLine + productsDesc + Environment.NewLine +
+                   $"Итого к оплате: {totalOrderPrice:C}" + Environment.NewLine +
+                   $"Дата заказа: {order.OrderDate:dd.MM.yyyy}" ;
         }
 
         //Стилизация ячейки статуса заказа в таблице
@@ -125,7 +126,15 @@ namespace ShoesProject
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            this.Close(); // Возврат на форму товаров
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        // Обработка закрытия формы
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            //завершает работу формы и освобождает ресурсы
+            base.OnFormClosing(e);
         }
     }
 }

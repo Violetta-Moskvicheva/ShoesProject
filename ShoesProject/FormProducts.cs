@@ -10,7 +10,6 @@ namespace ShoesProject
         public User CurrentUser { get; private set; }
         public bool isGuest { get; private set; }
 
-        // Конструктор формы: настройка колонок таблицы, авторизация пользователя и загрузка товаров
         public FormProducts(User user, bool guest)
         {
             InitializeComponent();
@@ -174,7 +173,9 @@ namespace ShoesProject
 
             using (FormOrders formOrders = new FormOrders(CurrentUser, isGuest))
             {
+                this.Hide();
                 formOrders.ShowDialog();
+                this.Show();
             }
         }
     }
